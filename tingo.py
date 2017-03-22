@@ -19,7 +19,7 @@ client.username_pw_set(conf.broker[username], conf.broker[password])
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect(conf.broker[address], conf.broker[port], 60)
+client.connect(conf.broker[addr], conf.broker[port], 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
