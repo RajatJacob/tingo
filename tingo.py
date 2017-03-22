@@ -14,7 +14,8 @@ def on_message(client, userdata, msg):
 	getattr(animations, msg.topic.split("/")[1])(msg.payload)
 
 client = mqtt.Client()
-client.username_pw_set("rajatjacob", "ctrlaltdel")
+passwd = ""
+client.username_pw_set("rajatjacob", passwd)
 client.on_connect = on_connect
 client.on_message = on_message
 
