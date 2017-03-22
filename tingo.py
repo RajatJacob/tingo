@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import animations
+import conf
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc):
@@ -14,12 +15,11 @@ def on_message(client, userdata, msg):
 	getattr(animations, msg.topic.split("/")[1])(msg.payload)
 
 client = mqtt.Client()
-passwd = ""
-client.username_pw_set("rajatjacob", passwd)
+client.username_pw_set(conf.broker[username], conf.broker[password])
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("192.168.10.41", 1883, 60)
+client.connect(conf.broker[address], conf.broker[port], 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
