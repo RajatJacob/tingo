@@ -91,10 +91,3 @@ def ArrayToHex(arr):
 			x = "0" + x
 		hexa = hexa + x
 	return hexa
-
-#if(sys.argv[1]=="colorWipe"):
-#	colorWipe(sys.argv[2], int(sys.argv[3]))
-#elif(sys.argv[1]=="fadeColor"):
-#	fadeColor(sys.argv[2], sys.argv[3], int(sys.argv[4]))
-#elif(sys.argv[1]=="sunrise"):
-#	sunrise(int(sys.argv[2]))
