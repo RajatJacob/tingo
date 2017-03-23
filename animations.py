@@ -38,7 +38,7 @@ def fadeColor(arg):
 	a=hexToArray(arg[0])
 	b=hexToArray(arg[1])
 	d=[True, True, True]
-	wait=int(arg[2])
+	wait=arg[2]
 	while a!=b:
 		for i in range(0, len(a)):
 			if a[i]==b[i]:
@@ -48,8 +48,7 @@ def fadeColor(arg):
 			if (a[i] > b[i]) and d[i]:
 				a[i] = a[i] - 1
 		print str(a)+ArrayToHex(a)
-		colorWipe(ArrayToHex(a)+",0")
-		time.sleep(wait/1000.0)
+		colorWipe(ArrayToHex(a)+","+wait)
 	return 'Done.\n'
 
 def sunrise(wait):
