@@ -1,0 +1,34 @@
+#! /bin/sh
+# /etc/init.d/blah
+#
+
+# Some things that run always
+
+chdir /home/pi/tingo
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting Tingo..."
+    sudo python -u tingo.py &
+    ;;
+  stop)
+    echo "Stopping Tingo..."
+    ps aux  |grep tingo.py | awk '{print $2}' |xargs kill -9
+    ;;
+  restart)
+    echo "Restarting Tingo..."
+    ps aux  |grep tingo.py | awk '{print $2}' |xargs kill -9
+    sudo python -u tingo.py &
+    ;;
+  update)
+    echo "Updating Tingo..."
+    git pull
+    ;;
+  *)
+    echo "Usage: sudo tingo {start|stop|restart|update}"
+    exit 1
+    ;;
+esac
+
+exit 0
