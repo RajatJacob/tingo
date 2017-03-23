@@ -1,2 +1,0 @@
-# tingo
-Home Automation
