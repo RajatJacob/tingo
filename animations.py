@@ -18,9 +18,9 @@ def colorWipe(arg):
 	if(len(arg) < 2):
 		arg.append(50)
 	color = hexToArray(arg[0])
-	color[0] = (color[0])/6
-	color[1] = (color[1])/5
-	color[2] = (color[2])/4
+	color[0] = (color[0])/3
+	color[1] = (color[1])/2
+	color[2] = (color[2])/1
 	color = ArrayToHex(color)
 	color = hexToColor(color)
 	for i in range(strip.numPixels()):
@@ -47,7 +47,7 @@ def fadeColor(arg):
 				a[i] = a[i] + 1
 			if (a[i] > b[i]) and d[i]:
 				a[i] = a[i] - 1
-		print str(a)+ArrayToHex(a)
+		#print str(a)+ArrayToHex(a)
 		colorWipe(ArrayToHex(a)+","+wait)
 	return 'Done.\n'
 

@@ -10,16 +10,16 @@ chdir /home/pi/tingo
 case "$1" in
   start)
     echo "Starting Tingo..."
-    sudo python -u tingo.py &
+    python tingo.py >/dev/null
     ;;
   stop)
     echo "Stopping Tingo..."
-    ps aux  |grep tingo.py | awk '{print $2}' |xargs kill -9
+    sudo pkill -f tingo.py
     ;;
   restart)
     echo "Restarting Tingo..."
-    ps aux  |grep tingo.py | awk '{print $2}' |xargs kill -9
-    sudo python -u tingo.py &
+    sudo tingo stop
+    sudo tingo start
     ;;
   update)
     echo "Updating Tingo..."
