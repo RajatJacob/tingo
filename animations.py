@@ -12,6 +12,7 @@ LED_INVERT  = False   # True to invert the signal (when using NPN transistor lev
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT)
 strip.begin()
 
+#Gamma correction: https://learn.adafruit.com/led-tricks-gamma-correction/the-quick-fix
 gamma = [
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
