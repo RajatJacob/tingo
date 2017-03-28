@@ -1,4 +1,4 @@
-# TINGO
+# Tingo
 	AdaFruit NeoPixel controller for Raspberry Pi with MQTT
 
 ## Prerequisites
