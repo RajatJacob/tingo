@@ -10,20 +10,21 @@ chdir /home/pi/tingo
 case "$1" in
   start)
     echo "Starting Tingo..."
-    python tingo.py >/dev/null
+    sudo python tingo.py & >/dev/null
     ;;
   stop)
     echo "Stopping Tingo..."
-    sudo pkill -f tingo.py
+    sudo pkill -1 -f tingo.py
     ;;
   restart)
     echo "Restarting Tingo..."
-    sudo tingo stop
-    sudo tingo start
+    sudo tingo stop >/dev/null
+    sudo tingo start >/dev/null
     ;;
   update)
     echo "Updating Tingo..."
     git pull
+    tingo restart >/dev/null
     ;;
   *)
     echo "Usage: sudo tingo {start|stop|restart|update}"
@@ -32,3 +33,4 @@ case "$1" in
 esac
 
 exit 0
+
