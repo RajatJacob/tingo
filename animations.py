@@ -72,8 +72,10 @@ def fadeColor(arg):
 
 def sunrise(wait):
 	wait = int(wait)
-	fadeColor("000000,FF0000,"+str(wait))
-	fadeColor("FF0000,FFFF00,"+str(wait))
+	fadeColor("000000,550000,"+str(wait))
+	fadeColor("550000,FFC000,"+str(wait))
+	fadeColor("FFC000,FFFF00,"+str(wait))
+	fadeColor("FFFF00,FFFFFF,"+str(wait))
 	return 'Done.\n'
 
 def hexToColor(hexa):
