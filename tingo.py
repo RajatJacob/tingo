@@ -12,17 +12,11 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
 	#print(msg.topic+": "+str(msg.payload))
-<<<<<<< HEAD
-	try:
-		getattr(animations, msg.topic.split("/")[1])(str(msg.payload))
-	except:
-		pass
-=======
-	try:
-		getattr(animations, msg.topic.split("/")[1])(str(msg.payload))
-	except:
-		pass
->>>>>>> 36ffd14ac5df140988fedb9a4cf766c5bb4c3f57
+
+#	try:
+	getattr(animations, msg.topic.split("/")[1])(str(msg.payload))
+#	except:
+#		pass
 
 client = mqtt.Client()
 client.username_pw_set(conf.broker['username'], conf.broker['password'])
