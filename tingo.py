@@ -1,7 +1,9 @@
 import paho.mqtt.client as mqtt
 import animations
 import conf
+import tingo
 
+status = {}
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc):
 	#print("Connected with result code "+str(rc))
@@ -12,10 +14,15 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
 	#print(msg.topic+": "+str(msg.payload))
+<<<<<<< HEAD
 	try:
 		getattr(animations, msg.topic.split("/")[1])(msg.payload)
 	except:
 		pass
+=======
+	status[msg.topic] = msg.payload
+	getattr(animations, msg.topic.split("/")[1])()
+>>>>>>> c4ceece56dde08f497fba3b6802f50d6ff1804dd
 
 client = mqtt.Client()
 client.username_pw_set(conf.broker['username'], conf.broker['password'])
