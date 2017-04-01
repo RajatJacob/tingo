@@ -45,7 +45,7 @@ def colorWipe(arg):
 		strip.setPixelColor(LED_COUNT/2-i, color)
 		strip.setPixelColor(LED_COUNT/2+1+i, color)
 		strip.show()
-		time.sleep((int)arg[1]/1000.0)
+		time.sleep(int(arg[1])/1000.0)
 
 def fadeColor(arg):
 	arg = arg.split("/")
