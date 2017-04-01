@@ -14,6 +14,8 @@ def on_message(client, userdata, msg):
 	#print(msg.topic+": "+str(msg.payload))
 	try:
 		getattr(animations, msg.topic.split("/")[1])(msg.payload)
+	except:
+		pass
 
 client = mqtt.Client()
 client.username_pw_set(conf.broker['username'], conf.broker['password'])
