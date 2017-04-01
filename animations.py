@@ -32,9 +32,10 @@ gamma = [
   177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
   215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255] 
 
-def colorWipe():
+def colorWipe(arg):
 	"""Wipe color across display a pixel at a time."""
-	color = hexToArray(tingo.status["tingo/colorWipe/color"])
+	arg = arg.split("/")
+	color = hexToArray(arg[0])
 	color[0] = gamma[color[0]]
 	color[1] = gamma[color[1]]
 	color[2] = gamma[color[2]]
@@ -44,16 +45,18 @@ def colorWipe():
 		strip.setPixelColor(LED_COUNT/2-i, color)
 		strip.setPixelColor(LED_COUNT/2+1+i, color)
 		strip.show()
-		time.sleep(tingo.status["tingo/colorWipe/wait"]/1000.0)
+		time.sleep((int)arg[1]/1000.0)
 
-def fadeColor():
-	color = tingo.status["tingo/fadeColor/color"].split(",")
-	if(len(color) < 2):
-		color.append(0)
-	a=hexToArray(color[0])
-	b=hexToArray(color[1])
+def fadeColor(arg):
+	arg = arg.split("/")
+	if(len(arg) < 2):
+		arg.append(0)	
+	if(len(arg) < 3):
+		arg.append(0)
+	a=hexToArray(arg[0])
+	b=hexToArray(arg[1])
 	d=[True, True, True]
-	wait=tingo.status["tingo/fadeColor/wait"]
+	wait=arg[2]
 	while a!=b:
 		for i in range(0, len(a)):
 			if a[i]==b[i]:
@@ -66,8 +69,7 @@ def fadeColor():
 		colorWipe(ArrayToHex(a)+","+wait)
 	return 'Done.\n'
 
-def sunrise():
-	wait = tingo.status["tingo/sunrise/wait"]
+def sunrise(wait):
 	fadeColor("000000,550000,"+str(wait))
 	fadeColor("550000,FFC000,"+str(wait))
 	fadeColor("FFC000,FFFF00,"+str(wait))
