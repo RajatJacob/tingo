@@ -13,7 +13,7 @@ def on_connect(client, userdata, rc):
 def on_message(client, userdata, msg):
 	#print(msg.topic+": "+str(msg.payload))
 	try:
-		getattr(animations, msg.topic.split("/")[1])(msg.payload)
+		getattr(animations, msg.topic.split("/")[1])(str(msg.payload))
 	except:
 		pass
 
