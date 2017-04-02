@@ -1,7 +1,6 @@
 import time
 import sys
 from neopixel import *
-import tingo
 
 LED_COUNT   = 48      # Number of LED pixels.
 LED_PIN     = 18      # GPIO pin connected to the pixels (must support PWM!).
@@ -35,6 +34,8 @@ gamma = [
 def colorWipe(arg):
 	"""Wipe color across display a pixel at a time."""
 	arg = arg.split(",")
+	if(len(arg) < 2):
+		arg.append(50)
 	color = hexToArray(arg[0])
 	color[0] = gamma[color[0]]
 	color[1] = gamma[color[1]]
@@ -50,7 +51,7 @@ def colorWipe(arg):
 def fadeColor(arg):
 	arg = arg.split(",")
 	if(len(arg) < 2):
-		arg.append(0)	
+		arg.append(0)
 	if(len(arg) < 3):
 		arg.append(0)
 	a=hexToArray(arg[0])
@@ -70,6 +71,7 @@ def fadeColor(arg):
 	return 'Done.\n'
 
 def sunrise(wait):
+	wait = int(wait)
 	fadeColor("000000,550000,"+str(wait))
 	fadeColor("550000,FFC000,"+str(wait))
 	fadeColor("FFC000,FFFF00,"+str(wait))
