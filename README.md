@@ -2,10 +2,10 @@
 > AdaFruit NeoPixel controller for Raspberry Pi with MQTT
 
 ## Prerequisites
-- Raspberry Pi (Any model with internet connectivity)
-- rpi_ws281x library by Jeremy Garff
-- NeoPixel compatible LEDs
-- MQTT Broker (I would suggest Mosquitto)
+- A Raspberry Pi (Any model with internet connectivity)
+- The [rpi_ws281x](https://github.com/jgarff/rpi_ws281x) library by Jeremy Garff
+- [NeoPixel](https://learn.adafruit.com/adafruit-neopixel-uberguide/overview) compatible LEDs
+- An MQTT Broker (I would suggest [Mosquitto](https://mosquitto.org))
 
 ## Setup
 - Download and install the [rpi_ws281x](https://github.com/jgarff/rpi_ws281x) library
@@ -22,7 +22,7 @@ Enter the details of your MQTT broker.
 - (Optional)
   - Create a global symlink of the bash script.
 ```
- cd tingo/
+cd tingo/
 sudo ln tingo /usr/bin/tingo
 ```
 
