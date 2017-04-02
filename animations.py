@@ -34,7 +34,7 @@ gamma = [
 
 def colorWipe(arg):
 	"""Wipe color across display a pixel at a time."""
-	arg = arg.split("/")
+	arg = arg.split(",")
 	color = hexToArray(arg[0])
 	color[0] = gamma[color[0]]
 	color[1] = gamma[color[1]]
@@ -48,7 +48,7 @@ def colorWipe(arg):
 		time.sleep(int(arg[1])/1000.0)
 
 def fadeColor(arg):
-	arg = arg.split("/")
+	arg = arg.split(",")
 	if(len(arg) < 2):
 		arg.append(0)	
 	if(len(arg) < 3):
