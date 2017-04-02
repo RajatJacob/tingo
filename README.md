@@ -8,11 +8,10 @@
 	- MQTT Broker (I would suggest Mosquitto)
 
 ## Setup
-	- Download and install the rpi_ws281x library
-	-- https://github.com/jgarff/rpi_ws281x
+	- Download and install the [rpi_ws281x](https://github.com/jgarff/rpi_ws281x) library
 	- Download Tingo
-	-- Clone this repo: ```git clone https://github.com/RajatJacob/tingo.git```
-	-- or download the source code of the latest release (.ZIP) or (.TAR.GZ): https://github.com/RajatJacob/tingo/releases
+	-- Clone this repo: `git clone https://github.com/RajatJacob/tingo.git`
+	-- or [download the source code](https://github.com/RajatJacob/tingo/releases) of the latest release (.ZIP) or (.TAR.GZ).
 
 	```
 	cd tingo/
