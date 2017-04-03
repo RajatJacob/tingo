@@ -2,10 +2,11 @@ import paho.mqtt.client as mqtt
 import conf
 import time
 import sys
+import tingo
 from neopixel import *
 
 LED_COUNT   = 48      # Number of LED pixels.
-LED_PIN     = 18      # GPIO pin connected to the pixels (must support PWM!).
+LED_PIN     = conf.client["pin"]      # GPIO pin connected to the pixels (must support PWM!).
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA     = 5       # DMA channel to use for generating signal (try 5)
 LED_BRIGHTNESS = 255  # LED Brightness
@@ -127,7 +128,7 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
 	#print(msg.topic+": "+str(msg.payload))
-	getattr(animations, msg.topic.split("/")[1])(msg.payload)
+	getattr(tingo, msg.topic.split("/")[1])(msg.payload)
 
 client = mqtt.Client()
 client.username_pw_set(conf.broker['username'], conf.broker['password'])
