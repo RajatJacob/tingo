@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import conf
 
-animations = __import__("animations", conf.client["type"])
+animations = __import__("animations", globals(), locals(), [conf.client["type"]])
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc):
 	#print("Connected with result code "+str(rc))
