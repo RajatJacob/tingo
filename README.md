@@ -17,16 +17,16 @@
 cd tingo/
 python setup.py
 ```
-Enter the details of your MQTT broker.
-- IP Address/Hostname
-- Port
-- Username
-- Password
+- Enter the details of your MQTT broker.
+  - IP Address/Hostname
+  - Port
+  - Username
+  - Password
 
-Enter the details of the client
-- Client ID
-- Device type (ws281x)
-- GPIO pin to contol
+- Enter the details of the client
+  - Client ID
+  - Device type (ws281x)
+  - GPIO pin to contol
 
 - (Optional)
   - Create a global symlink of the bash script.
