@@ -1,28 +1,29 @@
 import paho.mqtt.client as mqtt
-import conf
-import animations
+from conf import *
+from animations import *
 
-typeClass = __import__("animations."+conf.client["type"])
+print dir()
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc):
 	#print("Connected with result code "+str(rc))
 	# Subscribing in on_connect() means that if we lose the connection and
 	# reconnect then subscriptions will be renewed.
-	client.subscribe("tingo/"+conf.client["name"]+"/#")
-	client.subscribe("tingo/all/#")
+	client.subscribe("tingo/#")
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-	print(msg.topic+": "+str(msg.payload))
-	getattr(typeClass, msg.topic.split('/')[2])(msg.payload)
+	topic = msg.topic.split('/')
+	dev_id = topic[1]
+	confFile = globals()[dev_id]
+	typeClass = globals()[confFile.conf["type"]]
+	getattr(typeClass, topic[2])(msg.payload)
 
-print dir(getattr(typeClass, "__name__"))
 client = mqtt.Client()
-client.username_pw_set(conf.broker['username'], conf.broker['password'])
+client.username_pw_set(broker.conf['username'], broker.conf['password'])
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect(conf.broker['addr'], conf.broker['port'], 60)
+client.connect(broker.conf['addr'], broker.conf['port'], 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
