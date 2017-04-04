@@ -1,6 +1,6 @@
 import os
 
-d = os.listdir("./conf")
+d = os.listdir("./animations")
 __all__ = []
 for x in d:
 	if(x.endswith(".py")):
