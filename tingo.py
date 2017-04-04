@@ -7,12 +7,14 @@ def on_connect(client, userdata, rc):
 	#print("Connected with result code "+str(rc))
 	# Subscribing in on_connect() means that if we lose the connection and
 	# reconnect then subscriptions will be renewed.
-	client.subscribe("tingo/#")
+	client.subscribe("tingo/"+conf.client["name"]+"/#")
+	client.subscribe("tingo/all/#")
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
 	#print(msg.topic+": "+str(msg.payload))
-	getattr(animations, msg.topic.split("/")[1])(msg.payload)
+	func = getattr(animations, msg.topic.split("/")[1])
+	func(msg.payload)
 
 client = mqtt.Client()
 client.username_pw_set(conf.broker['username'], conf.broker['password'])

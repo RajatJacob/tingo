@@ -7,7 +7,7 @@ s = s + ",\n\tusername = \'"
 s = s + raw_input("Username: ")
 s = s + "\',\n\tpassword = \'"
 s = s + raw_input("Password: ")
-s = s + "\',\n)\n\nclient = dict(\n\tdev_id = \'"
+s = s + "\',\n)\n\nclient = dict(\n\tname = \'"
 print "\nClient Configuration\n"
 s = s + raw_input("Device ID: ")
 s = s + "\',\n\ttype = \'"
