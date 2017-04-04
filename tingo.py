@@ -1,7 +1,8 @@
 import paho.mqtt.client as mqtt
 import conf
+import animations
 
-animations = __import__("animations."+conf.client["type"])
+typeClass = __import__("animations."+conf.client["type"])
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, rc):
 	#print("Connected with result code "+str(rc))
@@ -12,10 +13,10 @@ def on_connect(client, userdata, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-	#print(msg.topic+": "+str(msg.payload))
-	func = getattr(animations, msg.topic.split("/")[2])
-	func(msg.payload)
+	print(msg.topic+": "+str(msg.payload))
+	getattr(typeClass, msg.topic.split('/')[2])(msg.payload)
 
+print dir(getattr(typeClass, "__name__"))
 client = mqtt.Client()
 client.username_pw_set(conf.broker['username'], conf.broker['password'])
 client.on_connect = on_connect
