@@ -7,6 +7,8 @@
 NAME = "Tingo"
 DIR = "/home/pi/tingo"
 
+cd $DIR
+
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
