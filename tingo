@@ -9,7 +9,7 @@ chdir /home/pi/tingo
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
-    sudo python tingo.py
+    sudo python tingo.py &
     echo "Tingo is now running..."
     ;;
   stop)
