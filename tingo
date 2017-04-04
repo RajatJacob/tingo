@@ -4,20 +4,17 @@
 
 # Some things that run always
 
-NAME = "Tingo"
-DIR = "/home/pi/tingo"
-
-chdir $DIR
+chdir /home/pi/tingo
 
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
     sudo python tingo.py
-    echo "$NAME is now running..."
+    echo "Tingo is now running..."
     ;;
   stop)
     sudo pkill -1 -f tingo.py
-    echo "$NAME has been stopped..."
+    echo "Tingo has been stopped..."
     ;;
   restart)
     sudo ./tingo stop
@@ -31,7 +28,7 @@ case "$1" in
     sudo ./tingo restart
     ;;
   *)
-    echo "Usage: sudo tingo {start|stop|restart|status|update}"
+    echo "Usage: sudo $0 {start|stop|restart|status|update}"
     exit 1
     ;;
 esac
