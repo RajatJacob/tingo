@@ -14,7 +14,7 @@ def on_message(client, userdata, msg):
 	topic = msg.topic.split('/')
 	dev_id = topic[1]
 	confFile = globals()[dev_id]
-	typeClass = globals()[confFile.conf["type"]]
+	typeClass = getattr(globals()[confFile.conf["type"]], confFile.conf["type"])(confFile.conf["pin"])
 	getattr(typeClass, topic[2])(msg.payload)
 
 client = mqtt.Client()
