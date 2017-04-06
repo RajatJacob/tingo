@@ -8,7 +8,7 @@ class relay(object):
 		self.pins = pins
 		GPIO.setmode(GPIO.BCM)
 		for i in pins:
-			GPIO.setup(i, OUT, )
+			GPIO.setup(i, GPIO.OUT, )
 
 	def a(self, state):
 		GPIO.output(pins[1], state)
