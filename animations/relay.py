@@ -11,10 +11,10 @@ class relay(object):
 			GPIO.setup(i, GPIO.OUT, )
 
 	def a(self, state):
-		GPIO.output(pins[1], state)
+		GPIO.output(self.pins[1], state)
 	def b(self, state):
-		GPIO.output(pins[2], state)
+		GPIO.output(self.pins[2], state)
 	def c(self, state):
-		GPIO.output(pins[3], state)
+		GPIO.output(self.pins[3], state)
 	def d(self, state):
-		GPIO.output(pins[4], state)
+		GPIO.output(self.pins[4], state)
