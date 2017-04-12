@@ -76,6 +76,9 @@ class ws281x(object):
 		arg = arg.split(",")
 		if(len(arg) < 2):
 			arg.append("50")
+		d = 0
+		if(int(color) == 0):
+			d = -1
 		color = self.hexToArray(arg[0])
 		color[0] = self.gamma[color[0]]
 		color[1] = self.gamma[color[1]]
@@ -83,8 +86,8 @@ class ws281x(object):
 		color = self.ArrayToHex(color)
 		color = self.hexToColor(color)
 		for i in range(self.strip.numPixels()):
-			self.strip.setPixelColor(self.LED_COUNT/2-i, color)
-			self.strip.setPixelColor(self.LED_COUNT/2+1+i, color)
+			self.strip.setPixelColor(abs((self.LED_COUNT*d)+(self.LED_COUNT/2-i)), color)
+			self.strip.setPixelColor(abs((self.LED_COUNT*d)+(self.LED_COUNT/2+1+i)), color)
 			self.strip.show()
 			time.sleep(int(arg[1])/1000.0)
 
