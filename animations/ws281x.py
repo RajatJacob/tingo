@@ -77,7 +77,7 @@ class ws281x(object):
 		if(len(arg) < 2):
 			arg.append("50")
 		d = 0
-		if(int(arg[0])==0):
+		if(arg[0]=="000000"):
 			d = -1
 		color = self.hexToArray(arg[0])
 		color[0] = self.gamma[color[0]]
