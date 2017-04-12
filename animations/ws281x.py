@@ -78,7 +78,7 @@ class ws281x(object):
 			arg.append("50")
 		d = 0
 		try:
-			if(int(arg[0])==0):
+			if(int(arg[0].replace('#', '')==0):
 				d = -1
 		except:
 			pass
