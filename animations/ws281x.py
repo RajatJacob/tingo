@@ -10,9 +10,6 @@ class ws281x(object):
 	LED_BRIGHTNESS = 255  # LED Brightness
 	LED_INVERT  = False   # True to invert the signal (when using NPN transistor level shift)
 
-	strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT)
-	strip.begin()
-
 	#Gamma correction: https://learn.adafruit.com/led-tricks-gamma-correction/the-quick-fix
 	gamma = [
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -36,6 +33,8 @@ class ws281x(object):
 	def __init__(self, pin):
 		#super(ws281x, self).__init__()
 		self.LED_PIN = pin
+		strip = Adafruit_NeoPixel(self.LED_COUNT, self.LED_PIN, self.LED_FREQ_HZ, self.LED_DMA, self.LED_INVERT)
+		strip.begin()
 
 	def hexToColor(self, hexa):
 		hexa=hexa.replace('#', '')
