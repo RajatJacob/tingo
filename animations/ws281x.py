@@ -33,8 +33,8 @@ class ws281x(object):
 	def __init__(self, pin):
 		#super(ws281x, self).__init__()
 		self.LED_PIN = pin
-		strip = Adafruit_NeoPixel(self.LED_COUNT, self.LED_PIN, self.LED_FREQ_HZ, self.LED_DMA, self.LED_INVERT)
-		strip.begin()
+		self.strip = Adafruit_NeoPixel(self.LED_COUNT, self.LED_PIN, self.LED_FREQ_HZ, self.LED_DMA, self.LED_INVERT)
+		self.strip.begin()
 
 	def hexToColor(self, hexa):
 		hexa=hexa.replace('#', '')
