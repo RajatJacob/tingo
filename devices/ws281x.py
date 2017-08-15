@@ -2,9 +2,9 @@ import time
 import sys
 from neopixel import *
 
-class ws281x(object):		
+class ws281x():		
 	LED_COUNT   = 48      # Number of LED pixels.
-	LED_PIN     = 0      # GPIO pin connected to the pixels (must support PWM!).
+	LED_PIN     = 18      # GPIO pin connected to the pixels (must support PWM!).
 	LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 	LED_DMA     = 5       # DMA channel to use for generating signal (try 5)
 	LED_BRIGHTNESS = 255  # LED Brightness
@@ -29,12 +29,12 @@ class ws281x(object):
 	  177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
 	  215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255] 
 
-	"""docstring for ws281x"""
-	def __init__(self, pin):
-		#super(ws281x, self).__init__()
-		self.LED_PIN = pin
+	def __init__(self, args):
+		args = map(int, args.replace(' ', '\0').split(','))
+		self.LED_PIN = args[0]
+		self.LED_COUNT = args[1]
 		self.strip = Adafruit_NeoPixel(self.LED_COUNT, self.LED_PIN, self.LED_FREQ_HZ, self.LED_DMA, self.LED_INVERT)
-		self.strip.begin()
+	        self.strip.begin()		
 
 	def hexToColor(self, hexa):
 		hexa=hexa.replace('#', '')
@@ -73,8 +73,6 @@ class ws281x(object):
 	def colorWipe(self, arg):
 		"""Wipe color across display a pixel at a time."""
 		arg = arg.split(",")
-		if(len(arg) < 2):
-			arg.append("50")
 		d = 0
 		try:
 			if(int(arg[0].replace('#', ''))==0):
@@ -90,8 +88,7 @@ class ws281x(object):
 		for i in range(self.strip.numPixels()):
 			self.strip.setPixelColor(0-(self.LED_COUNT*d)+(self.LED_COUNT/2-i), color)
 			self.strip.setPixelColor(0+(self.LED_COUNT*d)+(self.LED_COUNT/2+1+i), color)
-			self.strip.show()
-			time.sleep(int(arg[1])/1000.0)
+		self.strip.show()
 
 	def fadeColor(self, arg):
 		arg = arg.split(",")
@@ -112,10 +109,17 @@ class ws281x(object):
 				if (a[i] > b[i]) and d[i]:
 					a[i] = a[i] - 1
 			#print str(a)+ArrayToHex(a)
-			self.colorWipe(self.ArrayToHex(a)+","+wait)
+			self.colorWipe(self.ArrayToHex(a))
+			time.sleep(wait/1000.0)
 
 	def sunrise(self, wait):
 		self.fadeColor("000000,550000,"+str(wait))
 		self.fadeColor("550000,FFC000,"+str(wait))
 		self.fadeColor("FFC000,FFFF00,"+str(wait))
-		self.fadeColor("FFFF00,FFFFFF,"+str(wait))		
+		self.fadeColor("FFFF00,FFFFFF,"+str(wait))
+
+	def run(self, args):
+                args = args.split(' ', 1)
+                function = getattr(self, args[0])
+                function(args[1])
+
