@@ -17,7 +17,10 @@ class Device():
 
 class DigitalDevice(Device):
 	def setState(self, state):
+		if type(state) is not type(True):
+			state = state == b'true' or state == 1 or state == "true"
 		self.state = state
+		print("Setting state of {} as {}".format(self.pin, self.state))
 		GPIO.output(self.pin, not self.state)
 		return self.state
 
@@ -26,6 +29,7 @@ class DigitalDevice(Device):
 			self.state = GPIO.input(self.pin)
 		return self.state
 
-	def __init__(self, pin, type, state=False):
+	def __init__(self, pin, type, state=False, setState=True):
 		super().__init__(pin, type)
-		self.setState(state)
+		if setState:
+			self.setState(state)
