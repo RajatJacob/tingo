@@ -15,7 +15,7 @@ GPIO.setmode(GPIO.BCM)
 devices = {}
 for d in conf['devices']:
 	if d['type'].lower().strip() == "digital":
-		devices[d['name']] = DigitalDevice(int(d['pin']), GPIO.IN if d['mode'] == 'input' else GPIO.OUT, setState=False)
+		devices[d['name']] = DigitalDevice(d['name'], int(d['pin']), GPIO.IN if d['mode'] == 'input' else GPIO.OUT, setState=False)
 
 # MQTT CALLBACKS
 def on_connect(client, userdata, flags, rc):

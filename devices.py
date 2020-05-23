@@ -1,8 +1,9 @@
 import RPi.GPIO as GPIO
 
 class Device():
-	def __init__(self, pin, type=GPIO.OUT):
-		print("Created Device at pin #{} of type {}".format(pin, 'in' if type==GPIO.IN else 'out' ))
+	def __init__(self, name, pin, type=GPIO.OUT):
+		print("Created Device '{}' at pin #{} of type {}".format(name, pin, 'in' if type==GPIO.IN else 'out' ))
+		self.name = name
 		self.pin = pin
 		if type not in [GPIO.IN, GPIO.OUT]:
 			raise Exception("Device type should be RPi.GPIO.IN or RPi.GPIO.OUT")
@@ -10,7 +11,7 @@ class Device():
 		GPIO.setup(self.pin, self.type)
 
 	def __str__(self):
-		return "[Pin: {}][Pin Type: {}]".format(self.pin, 'input' if self.type == GPIO.IN else 'output')
+		return "[{} @ #{}]: {}".format(self.name, self.pin, self.state)
 
 	def __repr__(self):
 		return self.__str__()
@@ -20,7 +21,7 @@ class DigitalDevice(Device):
 		if type(state) is not type(True):
 			state = state == b'true' or state == 1 or state == "true"
 		self.state = state
-		print("Setting state of {} as {}".format(self.pin, self.state))
+		print(self)
 		GPIO.output(self.pin, not self.state)
 		return self.state
 
@@ -29,7 +30,7 @@ class DigitalDevice(Device):
 			self.state = GPIO.input(self.pin)
 		return self.state
 
-	def __init__(self, pin, type, state=False, setState=True):
-		super().__init__(pin, type)
+	def __init__(self, name, pin, type, state=False, setState=True):
+		super().__init__(name, pin, type)
 		if setState:
 			self.setState(state)
