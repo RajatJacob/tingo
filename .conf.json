@@ -1,0 +1,28 @@
+{
+	"devices": [
+		{
+			"name": "Lamp0",
+			"type": "digital",
+			"pin": 16,
+			"mode": "output"
+		},
+		{
+			"name": "Lamp1",
+			"type": "digital",
+			"pin": 19,
+			"mode": "output"
+		},
+		{
+                        "name": "Lamp2",
+                        "type": "digital",
+                        "pin": 20,
+                        "mode": "output"
+                },
+                {
+                        "name": "Lamp3",
+                        "type": "digital",
+                        "pin": 26,
+                        "mode": "output"
+                }
+	]
+}

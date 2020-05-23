@@ -9,6 +9,12 @@ class Device():
 		self.type = type
 		GPIO.setup(self.pin, self.type)
 
+	def __str__(self):
+		return "[Pin: {}][Pin Type: {}]".format(self.pin, 'input' if self.type == GPIO.IN else 'output')
+
+	def __repr__(self):
+		return self.__str__()
+
 class DigitalDevice(Device):
 	def setState(self, state):
 		self.state = state
