@@ -1,11 +1,11 @@
-import json
+import yaml
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 from devices import DigitalDevice
 
 # READ CONFIG FILE
-with open(".conf.json", "r") as confFile:
-	conf = json.load(confFile)
+with open(".conf.yaml", "r") as confFile:
+	conf = yaml.load(confFile)
 
 # GPIO SETUP
 GPIO.setwarnings(False)
