@@ -1,0 +1,17 @@
+broker:
+  host: docker
+  port: 1883
+
+devices:
+  - topic: relay/1
+    type: toggleable
+    pin: 20
+  - topic: relay/2
+    type: toggleable
+    pin: 26
+  - topic: relay/3
+    type: toggleable
+    pin: 16
+  - topic: relay/4
+    type: toggleable
+    pin: 19
