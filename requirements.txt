@@ -1,3 +1,4 @@
 paho.mqtt
 pyyaml
 RPi.GPIO
+rpi_ws281x

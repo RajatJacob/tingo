@@ -1,0 +1,14 @@
+[Unit]
+Description=Tingo
+After=network-online.target
+ 
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/tingo/tingo.py
+WorkingDirectory=/home/pi/tingo
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+ 
+[Install]
+WantedBy=multi-user.target

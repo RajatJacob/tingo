@@ -15,15 +15,22 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, msg):
-    idx = topics.index(msg.topic)
-    if idx != -1:
+    idx = None
+    for i in range(len(topics)):
+        t = topics[i]
+        if (t[-1] == '#' and "@"+t[:-1] in "@"+msg.topic) or t == msg.topic:
+            idx = i
+            break
+    if idx != None:
         dev = devices[idx]
-        functions.call(dev, msg.payload)
+        print(dev['pin'], dev['type'], dev['topic'], msg.topic, msg.payload)
+        functions.call(dev, msg)
+
 
 def setupGPIO():
     gpio.setwarnings(False)
     gpio.setmode(gpio.BCM)
-    outputTypes = ['toggleable']
+    outputTypes = ['toggleable', 'ws2812b']
     inputTypes = []
     for dev in devices:
         if dev.get('type') in outputTypes:

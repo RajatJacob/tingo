@@ -15,3 +15,7 @@ devices:
   - topic: relay/4
     type: toggleable
     pin: 19
+  - topic: monitor/#
+    type: ws2812b
+    pin: 18
+    ledCount: 14
